@@ -1,6 +1,6 @@
 {
-  "latest_version": "2.1.0",
-  "apk_url": "https://github.com/dexenter0/dexenter/releases/download/v2.1.0/dexenter.apk",
+  "latest_version": "2.2.0",
+  "apk_url": "https://github.com/dexenter0/dexenter/releases/download/v2.2.0/dexenter.apk",
   "is_force_update": true,
-  "update_notes": "🚀 Added Features!\n2. Improved UI.\n3. Bugs Fixed."
+  "update_notes": "🚀 *New in v2.2.0*\n\n🗳️ Polling is here!\nNow you can ask anything,\nand the whole university\ncommunity will be your audience."
 }
