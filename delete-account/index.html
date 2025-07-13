@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Deletion Request - DeXenter</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            padding: 1rem; /* Padding around the content */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md md:max-w-lg lg:max-w-xl">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Account Deletion Request</h1>
+        <p class="text-gray-600 mb-6 text-center">
+            Please fill out this form to request the deletion of your account and associated data from <span class="font-semibold">DeXenter</span>.
+        </p>
+
+        <!-- The form uses mailto: for submission. This will open the user's email client. -->
+        <!-- For a more reliable solution, a server-side script or a dedicated form service is recommended. -->
+        <form id="deletionForm" action="mailto:dexenter0@gmail.com" method="post" enctype="text/plain" class="space-y-4">
+            <div>
+                <label for="userEmail" class="block text-sm font-medium text-gray-700 mb-1">Your Email Address (associated with your DeXenter account)</label>
+                <input
+                    type="email"
+                    id="userEmail"
+                    name="User Email"
+                    placeholder="you@example.com"
+                    required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+            </div>
+
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Your Username (if applicable)</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="Username"
+                    placeholder="e.g., your_gamertag"
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+                <p class="mt-1 text-xs text-gray-500">This helps us locate your account faster.</p>
+            </div>
+
+            <div>
+                <label for="reason" class="block text-sm font-medium text-gray-700 mb-1">Reason for Deletion (Optional)</label>
+                <textarea
+                    id="reason"
+                    name="Reason for Deletion"
+                    rows="4"
+                    placeholder="e.g., I no longer use the app, privacy concerns, etc."
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                ></textarea>
+            </div>
+
+            <div class="flex items-center">
+                <input
+                    type="checkbox"
+                    id="confirmDeletion"
+                    name="Confirmation"
+                    value="User confirms understanding of permanent data deletion"
+                    required
+                    class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                >
+                <label for="confirmDeletion" class="ml-2 block text-sm text-gray-900">
+                    I understand that my account and all associated data will be permanently deleted.
+                </label>
+            </div>
+
+            <p class="text-sm text-gray-600">
+                Upon submission, your default email client will open with a pre-filled email. Please send this email to complete your request.
+            </p>
+
+            <button
+                type="submit"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out"
+            >
+                Submit Deletion Request
+            </button>
+        </form>
+
+        <div id="successMessage" class="hidden mt-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">Your request has been prepared. Please send the email that opens in your mail client.</span>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('deletionForm').addEventListener('submit', function(event) {
+            // Prevent default form submission to show custom message
+            // Note: For mailto, the browser will still try to open the email client.
+            // This script primarily provides a visual confirmation on the page.
+            event.preventDefault();
+
+            // Get form data
+            const userEmail = document.getElementById('userEmail').value;
+            const username = document.getElementById('username').value; // Changed from userId
+            const reason = document.getElementById('reason').value;
+            const confirmation = document.getElementById('confirmDeletion').checked ? 'Confirmed' : 'Not Confirmed';
+
+            // Construct email body
+            const subject = encodeURIComponent('Account Deletion Request - DeXenter'); // Changed app name
+            const body = encodeURIComponent(
+                `Account Deletion Request for DeXenter\n\n` + // Changed app name
+                `User Email: ${userEmail}\n` +
+                `Username: ${username || 'Not provided'}\n` + // Changed from User ID
+                `Reason for Deletion: ${reason || 'No reason provided'}\n` +
+                `Confirmation: ${confirmation}\n\n` +
+                `Please process this account deletion request as per your data privacy policy.`
+            );
+
+            // Construct mailto link
+            const mailtoLink = `mailto:dexenter0@gmail.com?subject=${subject}&body=${body}`;
+
+            // Open email client
+            window.location.href = mailtoLink;
+
+            // Show success message
+            document.getElementById('successMessage').classList.remove('hidden');
+
+            // Optionally, reset the form after a short delay
+            setTimeout(() => {
+                this.reset();
+                document.getElementById('successMessage').classList.add('hidden');
+            }, 5000); // Hide message and reset form after 5 seconds
+        });
+    </script>
+</body>
+</html>
 
