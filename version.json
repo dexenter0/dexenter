@@ -1,6 +1,6 @@
 {
-  "latest_version": "2.2.1",
-  "apk_url": "https://github.com/dexenter0/dexenter/releases/download/v2.2.1/dexenter.apk",
+  "latest_version": "2.2.2",
+  "apk_url": "https://github.com/dexenter0/dexenter/releases/download/v2.2.2/dexenter.apk",
   "is_force_update": true,
-  "update_notes": "🚀 *New in v2.2.1*\n\n🗳️ Bug Fixes.\nUI Improvements."
+  "update_notes": "🚀 *New in v2.2.2*\n\n🗳️ Improved Performance\n& Response time"
 }
